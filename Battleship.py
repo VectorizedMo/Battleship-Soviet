@@ -240,8 +240,6 @@ class Board:
                                     else:
                                         if Board[P1[0]-1][i]:
                                             Suitable = False
-
-
                         if Suitable:
                             if not mode:
                                 for i in range(P2[1], P1[1]+1):
@@ -387,8 +385,6 @@ class Board:
                                     else:
                                         if Board[i][P1[1]-1] == 2:
                                             Suitable = False
-
-                    
                         if Suitable:
                             if not mode:
                                 for i in range(P2[0], P1[0]+1):
@@ -441,12 +437,6 @@ class Board:
                                     Board[i][RandomCoord[1]] = 2
                                 Mapping[Mapping.index(TypeOfShip)+1] -= 1
         self.AIBoard = Board
-        count = 0
-        for x in Board:
-            count += x.count(2)
-        print(count)
-        for x in Board:
-            print(x)
 
 def CheckCondition(*args):
     count = 0
@@ -524,7 +514,6 @@ def main():
                 DeleteText(TextStore.index('PLACE YOUR SHIPS')-2)
                 MainNameRect = CreateTextandStore("ATTACK!", 50, (255,255,255), HEIGHT//2,WIDTH//15)
                 AttackPhaseEnter = True
-
         BattleshipBoard.CreateSquares(SCREEN, 10)
         UpdateText()
         #For Loop for Inputs
@@ -569,10 +558,8 @@ def main():
                                     #If clicked on a green part/ship then reset selection
                                     if PreviousSquare:
                                         BattleshipBoard.Boardlist[PreviousSquare[0]][PreviousSquare[1]] = 0
-
                                     SelectedSquare = None
                                     PreviousSquare = None
-                
                 if AttackPhase:
                     Reset = False
                     for i in range(10):
@@ -603,9 +590,6 @@ def main():
 
                                     if BattleshipBoard.Boardlist[SelectedSquare[0]][SelectedSquare[1]] == 4 and BattleshipBoard.AIBoard[SelectedSquare[0]][SelectedSquare[1]] != 2:
                                         BattleshipBoard.Boardlist[SelectedSquare[0]][SelectedSquare[1]] = 5
-
-
-
                                     if BattleshipBoard.Boardlist[SelectedSquare[0]][SelectedSquare[1]] == 0:
                                         BattleshipBoard.Boardlist[SelectedSquare[0]][SelectedSquare[1]] = 6
                                     if BattleshipBoard.Boardlist[SelectedSquare[0]][SelectedSquare[1]] == 2:
@@ -617,9 +601,7 @@ def main():
                                             BattleshipBoard.Boardlist[RandomHit[0]][RandomHit[1]] = 9
                                         else:
                                             BattleshipBoard.Boardlist[RandomHit[0]][RandomHit[1]] = 4
-                            
                 #Graphical Stuff
-
                 #Cancelling and resetting selection.
                 if Cancelled and Playing:
                     if SelectedSquare:
@@ -636,7 +618,7 @@ def main():
                     for i in range(10):
                         for j in range(10):
                             BattleshipBoard.Boardlist[i][j] = 0
-
+                            
                 #Actually Building the Ships
                 if SelectedSquare:
                     if PreviousSquare:
@@ -644,16 +626,13 @@ def main():
                         if ShipValue:
                             SelectedSquare = None
                             PreviousSquare = None
-        if CheckCondition(BattleshipBoard.Boardlist, 8,3,9) == 20:
+        if CheckCondition(BattleshipBoard.Boardlist,8,3,9) == 20:
             print("You won")
             quit()
-        elif CheckCondition(BattleshipBoard.Boardlist, 5,4,9) == 20:
+        elif CheckCondition(BattleshipBoard.Boardlist,5,4,9) == 20:
             print("AI won")
             quit()
-                
-        
-
         pygame.display.update()
-
+        
 #Calling Main Function
 main()
