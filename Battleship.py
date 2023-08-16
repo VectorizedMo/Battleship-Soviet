@@ -52,6 +52,7 @@ class Board:
         InitialStartingPosY = math.ceil((HEIGHT - ((SquareLength+SpaceInBetween)*Amount))/1.2)
         SquareIncrementForSpace = SquareLength+SpaceInBetween
         ColorVal = 255
+        ColorMapping = [(255,0,0),(0,0,255),(0,255,0),(255,255,0),(0,0,0),(87,8,97),(150,20,60),(60,70,120),(150,150,20),(255,192,203)]
         #Looping and creating the squares.
         for i in range(Amount):
             RowListRects = []
@@ -59,27 +60,9 @@ class Board:
             for j in range(Amount):
                 Rect = pygame.Rect(InitialStartingPosX,InitialStartingPosY,SquareWidth,SquareLength)
                 pygame.draw.rect(window, (ColorVal, ColorVal, ColorVal), Rect)
-                if self.Boardlist[i][j] == 0:
-                    pygame.draw.circle(SCREEN,(255,0,0),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 1:
-                    pygame.draw.circle(SCREEN,(0,0,255),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 2:
-                    pygame.draw.circle(SCREEN,(0,255,0),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 3:
-                    pygame.draw.circle(SCREEN,(255,255,0),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 4:
-                    pygame.draw.circle(SCREEN,(0,0,0),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 5:
-                    pygame.draw.circle(SCREEN,(87,8,97),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 6:
-                    pygame.draw.circle(SCREEN,(150,20,60),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 7:
-                    pygame.draw.circle(SCREEN,(60,70,120),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 8:
-                    pygame.draw.circle(SCREEN,(150,150,20),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-                elif self.Boardlist[i][j] == 9:
-                    pygame.draw.circle(SCREEN,(255,192,203),(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
-
+                for k,v in enumerate(ColorMapping):
+                    if self.Boardlist[i][j] == k:
+                        pygame.draw.circle(SCREEN,v,(InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)), Amount/2)
                 RowListRects.append(Rect)
                 RowlistCentres.append((InitialStartingPosX+(SquareLength/2), InitialStartingPosY+(SquareLength/2)))
                 InitialStartingPosX += SquareIncrementForSpace
