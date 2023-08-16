@@ -24,8 +24,6 @@ TextRect.center = (HEIGHT//2,WIDTH//15)
 #Resetting Screen Lambda
 RESETSCREEN = lambda x,y: pygame.draw.rect(SCREEN,(20,82,20),pygame.Rect(x,y,HEIGHT,WIDTH))
 
-
-
 #Main Board Class
 class Board:
     def __init__(self, length, width, SquareSizeX, SquareSizeY):
@@ -319,8 +317,6 @@ class Board:
                                     else:
                                         if Board[i][P1[1]-1] == 2:
                                             Suitable = False
-
-
                         if Suitable:
                             if not mode:
                                 for i in range(P1[0], P2[0]+1):
@@ -399,6 +395,7 @@ class Board:
                                     Board[i][P1[1]] = 2
                                 self.ShipsAmount[self.ShipsAmount.index(TypeOfShip)+1] -= 1     
                             return True
+                            
     def GenerateBoard(self):
         Board = [[0 for x in range(10)] for y in range(10)]
         Mapping = copy.deepcopy(DEFAULTSHIPMAPPING)
@@ -459,14 +456,6 @@ def CheckCondition(*args):
                 count += row.count(num)
     return count
 
-
-
-
-            
-
-            
-
-
 #Create Text Function
 def CreateTextandStore(*args):
     #ARGS: 1: NAME, 2: FONT SIZE, 3: COLOR, 4: CENTREPOSX, 5: CENTREPOSY
@@ -483,7 +472,6 @@ def CreateTextandStore(*args):
 def UpdateText():
     for i in range(0,len(TextStore),7):
         SCREEN.blit(TextStore[i], TextStore[i+1])
-
 
 def ChangeText(*args):
     #ARGS: 1: NAME, 2: FONT SIZE, 3: COLOR, 4: CENTREPOSX, 5: CENTREPOSY, 6:INDEX
@@ -502,11 +490,8 @@ def DeleteText(index):
     for i in range(index, index+7):
         TextStore.pop(index)
 
-
 #Initializing Board
 BattleshipBoard = Board(HEIGHT, WIDTH, 5,5)
-
-
 
 #Main Game Function
 def main():
